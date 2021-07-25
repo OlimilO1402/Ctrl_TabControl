@@ -1,0 +1,130 @@
+  'If mTabStrip Is Nothing Then Set mTabStrip = mParent.Controls.Add("COMCTL.TabStrip.1", mName + "mTabStrip", mContainer)
+  'If mTabStrip Is Nothing Then Set mTabStrip = New ClsCWTabStrip
+  'If mTabStrip Is Nothing Then Set mTabStrip = New ClsOMTabStrip
+  'Call mTabStrip.Create(mParent.hWnd, 0, 0, mContainer.Width, mContainer.Height)
+  'mTabStrip.Tabs.Clear
+  'mTabStrip.Visible = True
+  'mTabStrip.Refresh
+
+'Public Sub AddTab(Caption As String)
+'Dim n As Long, NewPAge As ClsTabPage
+'  mLastN = mLastN + 1
+'  Set NewPAge = New ClsTabPage
+'  Call NewPAge.Create(mParent, mPageCont, mName, Caption) '+ CStr(mLastN))
+'  mPageCol.Add NewPAge
+'  NewPAge.Visible = True
+'  n = mTabStrip.Tabs.Count + 1
+'  Call mTabStrip.Tabs.Add(n, Caption + CStr(mLastN), Caption, 0)
+'  mTabStrip.Tabs.Item(n).Selected = True
+'End Sub
+'Public Sub DelTab(LngPos As Long)
+'Dim DelPage As ClsTabPage
+'  If Count > 0 Then
+'    If LngPos = -1 Then
+'      LngPos = mTabStrip.SelectedItem.index
+'    End If
+'    Set DelPage = mPageCol.Item(LngPos)
+'      'If Not DelPage Is Nothing Then Call mParent.Controls.Remove(DelPage.TabPage)
+'    mPageCol.Remove (LngPos)
+'    mDelPCol.Add DelPage
+'    'Set DelPage = Nothing
+'    'wird nur unsichtbaar gemacht, kann nachher wieder sichtbar gemacht werden
+'    DelPage.Visible = False 'bei Speichern nur die Sichtbaren Speichern
+'    'Aber Achtung! jetzt ist Tabs und mPageCol nicht mehr synchron!!
+'    Call mTabStrip.Tabs.Remove(LngPos)
+'    'das zuletzt aktive Tab sichtbar machen
+'    If mLastSelected > LngPos Then mLastSelected = mLastSelected - 1
+'    If mLastSelected > Count Then mLastSelected = Count
+'    If mLastSelected > 0 Then mTabStrip.Tabs.Item(mLastSelected).Selected = True
+'  Else
+'    MsgBox "TabStrip enthält (noch) keine Tabs"
+'  End If
+'End Sub
+'Public Sub RenameTab(NewCaption As String)
+'  If Count > 0 Then
+'    Call RenameTabI(-1, NewCaption)
+'  Else
+'    MsgBox "TabStrip enthält noch keine Tabs"
+'  End If
+'End Sub
+'Public Sub RenameTabI(LngPos As Long, NewCaption As String)
+'Dim RenPage As ClsTabPage
+'  If Count > 0 Then
+'    If LngPos = -1 Then LngPos = mTabStrip.SelectedItem.index
+'    If LngPos > mPageCol.Count Then LngPos = mPageCol.Count
+'    Set RenPage = mPageCol.Item(LngPos)
+'    RenPage.Caption = NewCaption
+'    mTabStrip.SelectedItem.Caption = NewCaption
+'  End If
+'End Sub
+'Public Function GetSelectedTabCaption() As String
+'  If Count > 0 Then
+'    GetSelectedTabCaption = mTabStrip.SelectedItem.Caption
+'  End If
+'End Function
+'Public Function GetSelectedTabIndex() As Long
+'  If Count > 0 Then
+'    GetSelectedTabIndex = mTabStrip.SelectedItem.index
+'  End If
+'End Function
+'Public Function SelectTabByIx(index As Long)
+'  If Count > 0 Then
+'    mTabStrip.Tabs.Item(index).Selected = True
+'  End If
+'End Function
+'Public Function SelectTabByName(Caption As String)
+'  If Count > 0 Then
+'    Call SelectTabByIx(GetTabIxByName(Caption))
+'  End If
+'End Function
+'Public Function MoveCurTabToPos(NewPos As Long)
+'  If Count > 0 Then
+'    Call MoveTabIxToPos(-1, NewPos)
+'  End If
+'End Function
+'Public Function MoveTabIxToPos(CurTabPos As Long, NewPos As Long)
+'Dim ThisTab As ComctlLib.Tab, ThisPage As ClsTabPage
+'  If Count > 0 Then
+'    If CurTabPos = -1 Then CurTabPos = mTabStrip.SelectedItem.index
+'    If NewPos < 0 Then Exit Function
+'    If NewPos > Count Then NewPos = Count
+'    Set ThisTab = mTabStrip.Tabs.Item(CurTabPos)
+'    mTabStrip.Tabs.Remove (CurTabPos)
+'    Call mTabStrip.Tabs.Add(NewPos, ThisTab.Key, ThisTab.Caption, ThisTab.Image)
+'    Set ThisPage = mPageCol.Item(CurTabPos)
+'    Call mPageCol.Add(ThisPage, , NewPos)
+'    Call mPageCol.Remove(CurTabPos)
+'  End If
+'End Function
+'Public Function GetTabIxByName(Caption As String) As Long
+'Dim IP As ClsTabPage, i As Long
+'  For i = 1 To mPageCol.Count
+'    Set IP = mPageCol.Item(i)
+'    If IP.Caption = Caption Then
+'      GetTabIxByName = i
+'      Exit Function
+'    End If
+'  Next
+'End Function
+
+'Private Sub mTabStrip_BeforeClick(Cancel As Integer)
+'  mLastSelected = mTabStrip.SelectedItem.index
+'End Sub
+'Private Sub mTabStrip_Click()
+'Dim ThisSel As Long
+'  ThisSel = mTabStrip.SelectedItem.index
+'  'das vorher aktuelle unsichtbar machen
+'  Set mCurSelPage = mPageCol.Item(mLastSelected)
+'  mCurSelPage.Visible = False
+'  'das jetzt aktuelle sichtbar machen
+'  Set mCurSelPage = mPageCol.Item(ThisSel)
+'  mCurSelPage.Visible = True
+'  mCurSelected = ThisSel
+'End Sub
+
+'Private Sub mTabStrip_KeyDown(KeyCode As Integer, Shift As Integer)
+'  If KeyCode = vbKeyF2 Then
+'    'MsgBox "TabstripF2"
+'    RaiseEvent Rename(Me)
+'  End If
+'End Sub
