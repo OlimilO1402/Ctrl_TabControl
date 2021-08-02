@@ -5,121 +5,30 @@ Begin VB.Form Form1
    ClientHeight    =   5175
    ClientLeft      =   150
    ClientTop       =   795
-   ClientWidth     =   6255
+   ClientWidth     =   14520
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5175
-   ScaleWidth      =   6255
+   ScaleWidth      =   14520
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows-Standard
-   Begin VB.PictureBox PnlTabPage2 
-      BackColor       =   &H80000005&
-      Height          =   3975
-      Left            =   6840
-      ScaleHeight     =   3915
-      ScaleWidth      =   5955
-      TabIndex        =   4
-      Top             =   960
-      Width           =   6015
-      Begin VB.PictureBox Picture2 
-         BackColor       =   &H80000005&
-         Height          =   1935
-         Left            =   3720
-         ScaleHeight     =   1875
-         ScaleWidth      =   1995
-         TabIndex        =   15
-         Top             =   1680
-         Width           =   2055
-      End
-      Begin VB.Frame Frame1 
-         BackColor       =   &H80000005&
-         Caption         =   "Frame1"
-         Height          =   1935
-         Left            =   240
-         TabIndex        =   14
-         Top             =   1680
-         Width           =   3375
-      End
-      Begin VB.CommandButton Command9 
-         Caption         =   "Command7"
-         Height          =   375
-         Left            =   3720
-         TabIndex        =   13
-         Top             =   1200
-         Width           =   1455
-      End
-      Begin VB.CommandButton Command8 
-         Caption         =   "Command7"
-         Height          =   375
-         Left            =   3720
-         TabIndex        =   12
-         Top             =   720
-         Width           =   1455
-      End
-      Begin VB.CommandButton Command7 
-         Caption         =   "Command7"
-         Height          =   375
-         Left            =   3720
-         TabIndex        =   11
-         Top             =   240
-         Width           =   1455
-      End
-      Begin VB.OptionButton Option3 
-         BackColor       =   &H80000005&
-         Caption         =   "Option1"
-         Height          =   375
-         Left            =   1680
-         TabIndex        =   10
-         Top             =   1200
-         Width           =   1455
-      End
-      Begin VB.OptionButton Option2 
-         BackColor       =   &H80000005&
-         Caption         =   "Option1"
-         Height          =   375
-         Left            =   1680
-         TabIndex        =   9
-         Top             =   720
-         Width           =   1455
-      End
-      Begin VB.OptionButton Option1 
-         BackColor       =   &H80000005&
-         Caption         =   "Option1"
-         Height          =   375
-         Left            =   1680
-         TabIndex        =   8
-         Top             =   240
-         Width           =   1455
-      End
-      Begin VB.CheckBox Check3 
-         BackColor       =   &H80000005&
-         Caption         =   "Check2"
-         Height          =   375
-         Left            =   240
-         TabIndex        =   7
-         Top             =   1200
-         Width           =   1095
-      End
-      Begin VB.CheckBox Check2 
-         BackColor       =   &H80000005&
-         Caption         =   "Check2"
-         Height          =   375
-         Left            =   240
-         TabIndex        =   6
-         Top             =   720
-         Width           =   1095
-      End
-      Begin VB.CheckBox Check1 
-         BackColor       =   &H80000005&
-         Caption         =   "Check1"
-         Height          =   375
-         Left            =   240
-         TabIndex        =   5
-         Top             =   240
-         Width           =   1095
-      End
+   Begin VB.CommandButton BtnCopy 
+      Caption         =   "Copy"
+      Height          =   375
+      Left            =   3960
+      TabIndex        =   28
+      Top             =   0
+      Width           =   975
+   End
+   Begin VB.CommandButton BtnMove 
+      Caption         =   "Move"
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   27
+      Top             =   0
+      Width           =   975
    End
    Begin VB.PictureBox PnlTabPage1 
       BackColor       =   &H80000005&
@@ -179,7 +88,6 @@ Begin VB.Form Form1
          Width           =   1095
       End
       Begin VB.PictureBox Picture1 
-         BackColor       =   &H80000005&
          Height          =   1695
          Left            =   240
          ScaleHeight     =   1635
@@ -189,7 +97,6 @@ Begin VB.Form Form1
          Width           =   5535
       End
       Begin VB.Label Label1 
-         BackStyle       =   0  'Transparent
          Caption         =   "Label1"
          Height          =   375
          Left            =   240
@@ -198,7 +105,6 @@ Begin VB.Form Form1
          Width           =   1575
       End
       Begin VB.Label Label2 
-         BackStyle       =   0  'Transparent
          Caption         =   "Label1"
          Height          =   375
          Left            =   240
@@ -207,7 +113,6 @@ Begin VB.Form Form1
          Width           =   1575
       End
       Begin VB.Label Label3 
-         BackStyle       =   0  'Transparent
          Caption         =   "Label1"
          Height          =   375
          Left            =   240
@@ -216,26 +121,125 @@ Begin VB.Form Form1
          Width           =   1575
       End
    End
-   Begin VB.CommandButton Command3 
-      Caption         =   "Command1"
+   Begin VB.PictureBox PnlTabPage2 
+      BackColor       =   &H80000005&
+      Height          =   3975
+      Left            =   6840
+      ScaleHeight     =   3915
+      ScaleWidth      =   5955
+      TabIndex        =   4
+      Top             =   960
+      Width           =   6015
+      Begin VB.PictureBox Picture2 
+         Height          =   1935
+         Left            =   3720
+         ScaleHeight     =   1875
+         ScaleWidth      =   1995
+         TabIndex        =   15
+         Top             =   1680
+         Width           =   2055
+      End
+      Begin VB.Frame Frame1 
+         Caption         =   "Frame1"
+         Height          =   1935
+         Left            =   240
+         TabIndex        =   14
+         Top             =   1680
+         Width           =   3375
+      End
+      Begin VB.CommandButton Command9 
+         Caption         =   "Command7"
+         Height          =   375
+         Left            =   3720
+         TabIndex        =   13
+         Top             =   1200
+         Width           =   1455
+      End
+      Begin VB.CommandButton Command8 
+         Caption         =   "Command7"
+         Height          =   375
+         Left            =   3720
+         TabIndex        =   12
+         Top             =   720
+         Width           =   1455
+      End
+      Begin VB.CommandButton Command7 
+         Caption         =   "Command7"
+         Height          =   375
+         Left            =   3720
+         TabIndex        =   11
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.OptionButton Option3 
+         Caption         =   "Option1"
+         Height          =   375
+         Left            =   1680
+         TabIndex        =   10
+         Top             =   1200
+         Width           =   1455
+      End
+      Begin VB.OptionButton Option2 
+         Caption         =   "Option1"
+         Height          =   375
+         Left            =   1680
+         TabIndex        =   9
+         Top             =   720
+         Width           =   1455
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Option1"
+         Height          =   375
+         Left            =   1680
+         TabIndex        =   8
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.CheckBox Check3 
+         Caption         =   "Check2"
+         Height          =   375
+         Left            =   240
+         TabIndex        =   7
+         Top             =   1200
+         Width           =   1095
+      End
+      Begin VB.CheckBox Check2 
+         Caption         =   "Check2"
+         Height          =   375
+         Left            =   240
+         TabIndex        =   6
+         Top             =   720
+         Width           =   1095
+      End
+      Begin VB.CheckBox Check1 
+         Caption         =   "Check1"
+         Height          =   375
+         Left            =   240
+         TabIndex        =   5
+         Top             =   240
+         Width           =   1095
+      End
+   End
+   Begin VB.CommandButton BtnRename 
+      Caption         =   "Rename"
       Height          =   375
-      Left            =   1920
+      Left            =   2040
       TabIndex        =   3
       Top             =   0
       Width           =   975
    End
-   Begin VB.CommandButton Command2 
-      Caption         =   "Command1"
+   Begin VB.CommandButton BtnDel 
+      Caption         =   "Del -"
       Height          =   375
-      Left            =   960
+      Left            =   1080
       TabIndex        =   2
       Top             =   0
       Width           =   975
    End
-   Begin VB.CommandButton Command1 
-      Caption         =   "Command1"
+   Begin VB.CommandButton BtnAdd 
+      Caption         =   "Add +"
       Height          =   375
-      Left            =   0
+      Left            =   120
       TabIndex        =   1
       Top             =   0
       Width           =   975
@@ -293,46 +297,50 @@ Private Sub Form_Load()
     
     Set TabControl1 = MNew.TabControl(Me, PnlTabCtrl, "TabControl1")
     
-    NewTabPage TabControl1, "Tab1", Me.PnlTabPage1
+    NewTabPage TabControl1, "TabPage1", Me.PnlTabPage1
     
-    NewTabPage TabControl1, "Tab2", Me.PnlTabPage2
+    NewTabPage TabControl1, "Tab2Page", Me.PnlTabPage2
+    
+    Me.Width = 6345
+    
+    Dim bkColor1 As Long: bkColor1 = GetBkColor(GetDC(PnlTabPage1.hwnd))
+    BackgroundColorAndAllChildren(PnlTabPage1, Nothing) = bkColor1
+    
+    Dim bkColor2 As Long: bkColor2 = GetBkColor(GetDC(PnlTabPage2.hwnd))
+    BackgroundColorAndAllChildren(PnlTabPage2, Nothing) = bkColor2
     
 End Sub
 
-'Private Sub InitTabStrips()
-'
-'    Set TabStrip1 = New_TabControl(Me, PicOwnTab1, "TabStrip1")
-'  '###############  Tabpages init ##################
-'    Call NewTabPage(TabStrip1, "Grundwerte", FraBasicVal)
-'    Call NewTabPage(TabStrip1, "WALLS", FraAdWLS)
-'    Call NewTabPage(TabStrip1, "KEM/Gleitkreis", FraAdKEM)
-'
-'    Dim TC1Page4 As TabPage: Set TC1Page4 = NewTabPage(TabStrip1, "FEM")
-'
-'  '##########  das zweite TabControl
-'    Set TabStrip2 = New_TabControl(Me, TC1Page4.Page, "TabStrip2")
-'
-'    Call NewTabPage(TabStrip2, "Elast/Plast", FraAdFEMallg)
-'    Call NewTabPage(TabStrip2, "Wand-Boden", FraAdFEMwabo)
-'
-'    '2009_12_23 OM: das Sofistik Materialgesetz "Duncan Chang" gibts nicht mehr
-'    'Call NewTabPage(TabStrip2, "Duncan Chang", FraAdFEMdunc)
-'
-'    Call NewTabPage(TabStrip2, "GRAN", FraAdFEMgran)
-'
-'End Sub
+'TODO OM: collection of controls to exclude
+'e.g. if you want only the controls on the Form colored and not on the Picturebox
+Public Property Let BackgroundColorAndAllChildren(Ctrl, CtrlsToExclude As Collection, ByVal Color As Long)
+Try: On Error GoTo Catch
+    Ctrl.BackColor = Color
+    Debug.Print TypeName(Ctrl) & " : " & Ctrl.Name
+    Dim C
+    For Each C In Me.Controls
+        If C.Container Is Ctrl Then
+            If Not C.Container Is Nothing Then
+                BackgroundColorAndAllChildren(C, Nothing) = Color
+            End If
+        End If
+    Next
+    Exit Property
+Catch: On Error GoTo 0
+End Property
+
 Private Function NewTabPage(TC As TabControl, Name As String, Optional Ctrl As PictureBox = Nothing) As TabPage
 'Achtung Reihenfolge beachten:
 'zuerst
 ' * TabPages.add(NewTabPage),
 'dann
 ' * NewTabPage.Controls.Add(Ctrl)
-  Set NewTabPage = New TabPage: NewTabPage.Text = Name
-  Call TC.TabPages.Add(NewTabPage)
-  If Not Ctrl Is Nothing Then
-    Ctrl.BorderStyle = 0
-    Call NewTabPage.Controls.Add(Ctrl)
-  End If
+    Set NewTabPage = New TabPage: NewTabPage.Text = Name
+    Call TC.TabPages.Add(NewTabPage)
+    If Not Ctrl Is Nothing Then
+        Ctrl.BorderStyle = 0
+        Call NewTabPage.Controls.Add(Ctrl)
+    End If
 End Function
 
 Private Sub mnuFileExit_Click()
@@ -355,3 +363,23 @@ End Sub
 '            TabControl1.TabPages.Item(1).BringToFront
 '    End Select
 'End Sub
+
+Private Sub BtnAdd_Click()
+    '
+End Sub
+
+Private Sub BtnDel_Click()
+    '
+End Sub
+
+Private Sub BtnRename_Click()
+    '
+End Sub
+
+Private Sub BtnMove_Click()
+    '
+End Sub
+
+Private Sub BtnCopy_Click()
+    '
+End Sub
