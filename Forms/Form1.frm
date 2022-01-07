@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form FMain 
    BorderStyle     =   3  'Fester Dialog
    Caption         =   "Form1"
-   ClientHeight    =   5175
+   ClientHeight    =   5460
    ClientLeft      =   150
    ClientTop       =   795
    ClientWidth     =   14520
@@ -10,18 +10,67 @@ Begin VB.Form FMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5175
+   ScaleHeight     =   5460
    ScaleWidth      =   14520
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows-Standard
+   Begin VB.PictureBox PnlTabPage5 
+      BackColor       =   &H80000005&
+      Height          =   3735
+      Left            =   7440
+      ScaleHeight     =   3675
+      ScaleWidth      =   5835
+      TabIndex        =   33
+      Top             =   1560
+      Width           =   5895
+   End
+   Begin VB.PictureBox PnlTabPage4 
+      BackColor       =   &H80000005&
+      Height          =   3735
+      Left            =   7200
+      ScaleHeight     =   3675
+      ScaleWidth      =   5835
+      TabIndex        =   32
+      Top             =   1320
+      Width           =   5895
+   End
+   Begin VB.CommandButton Command1 
+      Caption         =   "Command1"
+      Height          =   375
+      Left            =   4920
+      TabIndex        =   31
+      Top             =   0
+      Width           =   1335
+   End
+   Begin VB.PictureBox PnlStatusBar 
+      Align           =   2  'Unten ausrichten
+      BorderStyle     =   0  'Kein
+      Height          =   375
+      Left            =   0
+      ScaleHeight     =   375
+      ScaleWidth      =   14520
+      TabIndex        =   30
+      Top             =   5085
+      Width           =   14520
+   End
+   Begin VB.PictureBox PnlTabCtrl2 
+      BackColor       =   &H80000005&
+      Height          =   3975
+      Left            =   6960
+      ScaleHeight     =   3915
+      ScaleWidth      =   5835
+      TabIndex        =   29
+      Top             =   1080
+      Width           =   5895
+   End
    Begin VB.PictureBox PnlTabPage2 
       BackColor       =   &H80000005&
       Height          =   3975
-      Left            =   6840
+      Left            =   6600
       ScaleHeight     =   3915
       ScaleWidth      =   5955
       TabIndex        =   4
-      Top             =   960
+      Top             =   840
       Width           =   6015
       Begin VB.PictureBox Picture2 
          Height          =   1935
@@ -115,22 +164,6 @@ Begin VB.Form FMain
          Width           =   1095
       End
    End
-   Begin VB.CommandButton BtnCopy 
-      Caption         =   "Copy"
-      Height          =   375
-      Left            =   3960
-      TabIndex        =   28
-      Top             =   0
-      Width           =   975
-   End
-   Begin VB.CommandButton BtnMove 
-      Caption         =   "Move"
-      Height          =   375
-      Left            =   3000
-      TabIndex        =   27
-      Top             =   0
-      Width           =   975
-   End
    Begin VB.PictureBox PnlTabPage1 
       BackColor       =   &H80000005&
       Height          =   3975
@@ -222,6 +255,22 @@ Begin VB.Form FMain
          Width           =   1575
       End
    End
+   Begin VB.CommandButton BtnCopy 
+      Caption         =   "Copy"
+      Height          =   375
+      Left            =   3960
+      TabIndex        =   28
+      Top             =   0
+      Width           =   975
+   End
+   Begin VB.CommandButton BtnMove 
+      Caption         =   "Move"
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   27
+      Top             =   0
+      Width           =   975
+   End
    Begin VB.CommandButton BtnRename 
       Caption         =   "Rename"
       Height          =   375
@@ -246,7 +295,8 @@ Begin VB.Form FMain
       Top             =   0
       Width           =   975
    End
-   Begin VB.PictureBox PnlTabCtrl 
+   Begin VB.PictureBox PnlTabCtrl1 
+      BackColor       =   &H80000005&
       Height          =   4575
       Left            =   120
       ScaleHeight     =   4515
@@ -292,26 +342,55 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Private m_DefTabName As String
+Private m_LastNr     As Long
 Private WithEvents TabControl1 As TabControl
 Attribute TabControl1.VB_VarHelpID = -1
+Private WithEvents TabControl2 As TabControl
+Attribute TabControl2.VB_VarHelpID = -1
+Private m_CurTabCtrl As TabControl
+
+Private Sub Command1_Click()
+    MsgBox Me.PnlTabCtrl1.Width & " " & Me.PnlTabCtrl1.Height
+    MsgBox Me.PnlTabCtrl2.Width & " " & Me.PnlTabCtrl2.Height
+End Sub
 
 Private Sub Form_Load()
     
-    Me.Caption = App.EXEName
+    m_DefTabName = "Tabelle"
     
-    Set TabControl1 = MNew.TabControl(Me, PnlTabCtrl, "TabControl1")
+    Me.Caption = App.EXEName
+    Me.Width = 6345
+    
+    'Erstes unterstes TabControl
+    Set TabControl1 = MNew.TabControl(Me, PnlTabCtrl1, "TabControl1")
+    
+    Set m_CurTabCtrl = TabControl1
     
     NewTabPage TabControl1, "TabPage1", Me.PnlTabPage1
     
-    NewTabPage TabControl1, "Tab2Page", Me.PnlTabPage2
-    
-    Me.Width = 6345
-    
+    NewTabPage TabControl1, "TabPage2", Me.PnlTabPage2
+        
     Dim bkColor1 As Long: bkColor1 = GetBkColor(GetDC(PnlTabPage1.hwnd))
     BackgroundColorAndAllChildren(PnlTabPage1, Nothing) = bkColor1
     
     Dim bkColor2 As Long: bkColor2 = GetBkColor(GetDC(PnlTabPage2.hwnd))
     BackgroundColorAndAllChildren(PnlTabPage2, Nothing) = bkColor2
+    
+    NewTabPage TabControl1, "TabPage3", Me.PnlTabCtrl2
+    
+    'Zweites oberstes TabControl
+    Set TabControl2 = MNew.TabControl(Me, PnlTabCtrl2, "TabControl2")
+    
+    NewTabPage TabControl2, "TabPage4", Me.PnlTabPage4
+    
+    NewTabPage TabControl2, "TabPage5", Me.PnlTabPage5
+    
+    Dim bkColor4 As Long: bkColor4 = GetBkColor(GetDC(PnlTabPage4.hwnd))
+    BackgroundColorAndAllChildren(PnlTabPage4, Nothing) = bkColor4
+    
+    Dim bkColor5 As Long: bkColor5 = GetBkColor(GetDC(PnlTabPage5.hwnd))
+    BackgroundColorAndAllChildren(PnlTabPage5, Nothing) = bkColor5
     
 End Sub
 
@@ -373,7 +452,14 @@ End Sub
 'End Sub
 
 Private Sub BtnAdd_Click()
-    '
+    Dim s As String: s = GetNewUniqueName
+    s = InputBox("Geben Sie bitte einen Tabellennamen an: ", "Tabellenname?", s, , , 0, 0)
+    If StrPtr(s) = 0 Then Exit Sub
+    Dim NewPage As TabPage: Set NewPage = NewTabPage(m_CurTabCtrl, s, Nothing)
+    'NewPage.Text = s
+    'm_CurTabCtrl.TabPages.Add NewPage
+    'm_CurTabCtrl.SelectedIndex = m_CurTabCtrl.TabCount - 1
+    m_LastNr = m_LastNr + 1
 End Sub
 
 Private Sub BtnDel_Click()
@@ -391,3 +477,53 @@ End Sub
 Private Sub BtnCopy_Click()
     '
 End Sub
+
+
+Private Function GetNewUniqueName() As String
+    Dim n As Long: n = m_LastNr + 1
+    Dim NUniName As String: NUniName = m_DefTabName + CStr(n)
+    
+    If NameExists(NUniName) Then
+        Dim i As Long
+        For i = 0 To m_CurTabCtrl.TabPages.Count - 1
+            NUniName = m_DefTabName + CStr(i)
+            If Not NameExists(NUniName) Then Exit For
+        Next
+    End If
+    GetNewUniqueName = NUniName
+End Function
+
+Private Function NameExists(StrNam As String) As Boolean
+    Dim p As TabPage
+    'Alle TabControls durchsuchen!
+    If TabControl1 Is Nothing Then Exit Function
+    For Each p In TabControl1.TabPages
+        If p.Text = StrNam Then
+            NameExists = True
+            Exit Function
+        End If
+    Next
+    If TabControl2 Is Nothing Then Exit Function
+    For Each p In TabControl2.TabPages
+        If p.Text = StrNam Then
+            NameExists = True
+            Exit Function
+        End If
+    Next
+End Function
+
+Private Function GetTabPageByName(Value As String) As TabPage
+    For Each GetTabPageByName In m_CurTabCtrl.TabPages
+        If GetTabPageByName.Text = Value Then Exit Function
+    Next
+End Function
+
+Private Sub TabControl1_TabClick(ByVal Index As Long)
+    Set m_CurTabCtrl = TabControl1
+    m_LastNr = Index
+End Sub
+Private Sub TabControl2_TabClick(ByVal Index As Long)
+    Set m_CurTabCtrl = TabControl2
+    m_LastNr = Index
+End Sub
+
