@@ -1,13 +1,22 @@
 VERSION 5.00
 Begin VB.Form FMain 
    BorderStyle     =   3  'Fester Dialog
-   Caption         =   "Form1"
+   Caption         =   "FMain"
    ClientHeight    =   5460
    ClientLeft      =   150
    ClientTop       =   795
    ClientWidth     =   14520
-   Icon            =   "Form1.frx":0000
-   LinkTopic       =   "Form1"
+   BeginProperty Font 
+      Name            =   "Segoe UI"
+      Size            =   9
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   Icon            =   "FMain.frx":0000
+   LinkTopic       =   "FMain"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5460
@@ -15,60 +24,49 @@ Begin VB.Form FMain
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows-Standard
    Begin VB.PictureBox PnlTabPage5 
+      Appearance      =   0  '2D
       BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
       Height          =   3735
       Left            =   7440
-      ScaleHeight     =   3675
-      ScaleWidth      =   5835
+      ScaleHeight     =   3705
+      ScaleWidth      =   5865
       TabIndex        =   33
       Top             =   1560
       Width           =   5895
    End
    Begin VB.PictureBox PnlTabPage4 
+      Appearance      =   0  '2D
       BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
       Height          =   3735
       Left            =   7200
-      ScaleHeight     =   3675
-      ScaleWidth      =   5835
+      ScaleHeight     =   3705
+      ScaleWidth      =   5865
       TabIndex        =   32
       Top             =   1320
       Width           =   5895
    End
-   Begin VB.CommandButton Command1 
-      Caption         =   "Command1"
-      Height          =   375
-      Left            =   4920
-      TabIndex        =   31
-      Top             =   0
-      Width           =   1335
-   End
-   Begin VB.PictureBox PnlStatusBar 
-      Align           =   2  'Unten ausrichten
-      BorderStyle     =   0  'Kein
-      Height          =   375
-      Left            =   0
-      ScaleHeight     =   375
-      ScaleWidth      =   14520
-      TabIndex        =   30
-      Top             =   5085
-      Width           =   14520
-   End
    Begin VB.PictureBox PnlTabCtrl2 
+      Appearance      =   0  '2D
       BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
       Height          =   3975
       Left            =   6960
-      ScaleHeight     =   3915
-      ScaleWidth      =   5835
+      ScaleHeight     =   3945
+      ScaleWidth      =   5865
       TabIndex        =   29
       Top             =   1080
       Width           =   5895
    End
    Begin VB.PictureBox PnlTabPage2 
+      Appearance      =   0  '2D
       BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
       Height          =   3975
       Left            =   6600
-      ScaleHeight     =   3915
-      ScaleWidth      =   5955
+      ScaleHeight     =   3945
+      ScaleWidth      =   5985
       TabIndex        =   4
       Top             =   840
       Width           =   6015
@@ -164,12 +162,33 @@ Begin VB.Form FMain
          Width           =   1095
       End
    End
+   Begin VB.CommandButton Command1 
+      Caption         =   "Command1"
+      Height          =   375
+      Left            =   4920
+      TabIndex        =   31
+      Top             =   0
+      Width           =   1335
+   End
+   Begin VB.PictureBox PnlStatusBar 
+      Align           =   2  'Unten ausrichten
+      BorderStyle     =   0  'Kein
+      Height          =   375
+      Left            =   0
+      ScaleHeight     =   375
+      ScaleWidth      =   14520
+      TabIndex        =   30
+      Top             =   5085
+      Width           =   14520
+   End
    Begin VB.PictureBox PnlTabPage1 
+      Appearance      =   0  '2D
       BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
       Height          =   3975
       Left            =   6360
-      ScaleHeight     =   3915
-      ScaleWidth      =   5955
+      ScaleHeight     =   3945
+      ScaleWidth      =   5985
       TabIndex        =   16
       Top             =   600
       Width           =   6015
@@ -296,11 +315,13 @@ Begin VB.Form FMain
       Width           =   975
    End
    Begin VB.PictureBox PnlTabCtrl1 
+      Appearance      =   0  '2D
       BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
       Height          =   4575
       Left            =   120
-      ScaleHeight     =   4515
-      ScaleWidth      =   5985
+      ScaleHeight     =   4545
+      ScaleWidth      =   6015
       TabIndex        =   0
       Top             =   480
       Width           =   6045
@@ -359,7 +380,7 @@ Private Sub Form_Load()
     
     m_DefTabName = "Tabelle"
     
-    Me.Caption = App.EXEName
+    Me.Caption = App.EXEName & " " & App.Major & "." & App.Minor & "." & App.Revision
     Me.Width = 6345
     
     'Erstes unterstes TabControl
@@ -512,9 +533,9 @@ Private Function NameExists(StrNam As String) As Boolean
     Next
 End Function
 
-Private Function GetTabPageByName(Value As String) As TabPage
+Private Function GetTabPageByName(value As String) As TabPage
     For Each GetTabPageByName In m_CurTabCtrl.TabPages
-        If GetTabPageByName.Text = Value Then Exit Function
+        If GetTabPageByName.Text = value Then Exit Function
     Next
 End Function
 
